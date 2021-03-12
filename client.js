@@ -13,12 +13,20 @@ const connect = function() {
     host: 'localhost',
     port: 50541
   });
-  // interpret incoming data as text
 
   conn.setEncoding('utf8');
-  conn.on("connect", () => {
-    console.log("Successfully connected to game server");
-    conn.write('Name: ARD');
-  });
+  function estConnect() {
+    conn.on("connect", () => {})
+  }
+  estConnect(console.log("Successfully connected to game server"));
+  setTimeout(() => {
+    estConnect(conn.write("move: up"))}, 1000)
+  estConnect(conn.write('Name: ARD'));
+  setTimeout(() => {
+    let move = setInterval(() => {
+    estConnect(conn.write("move: down"))}, 100)}, 1100);
+  setTimeout(() => {
+      clearInterval(move)}, 4000)
 }
-  module.exports = connect;
+
+module.exports = connect;
